@@ -10,4 +10,4 @@ def expenses(request):
     return HttpResponse('<h1>Страница расходов</h1>')
 
 def post_list(request):
-    return render(request, r'\templates\expense\post_list.html', {})
+    return render(request, r'Expenser\expense\templates\expense\post_list.html', {})
