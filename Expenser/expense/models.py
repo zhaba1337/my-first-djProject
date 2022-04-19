@@ -4,7 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 
-class Expenses(models.Model):
+class Expense(models.Model):
     title = models.CharField(max_length=255)
     amount = models.IntegerField()
     time_create = models.DateTimeField(default=timezone.now)
