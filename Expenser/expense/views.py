@@ -8,3 +8,6 @@ def index(request):
 
 def expenses(request):
     return HttpResponse('<h1>Страница расходов</h1>')
+
+def post_list(request):
+    return render(request, 'expense\post_list.html', {})
