@@ -5,6 +5,8 @@
     <body>
         <p>Hi there!</p>
         <p>It works!</p>
-        <a href="https://vk.com/zitrah"><i>-</i></a>
+        <a href="https://vk.com/zitrah"><i>{% for post in posts %}
+            {{ post }}
+        {% endfor %}</i></a>
     </body>
 </html>
