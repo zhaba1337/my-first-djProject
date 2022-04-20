@@ -6,6 +6,6 @@ urlpatterns = [
     path('', index),
     path('expenses', expenses),
     path('plot', post_list),
-    path('yes', yes),
-    path('no', no),
+    path('plot/yes', yes),
+    path('plot/no', no),
 ]
