@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <title>ТРАТЫ</title>
+    </head>
+    
+    <body>
+        <style>
+            table{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+        </style>
+        <table border = '1' height ="100%" width = '250px'>
+            <caption>Таблица трат</caption>    
+            <tr>
+                <td>Кафе</td>
+                {% for item in filterCafe %}
+                <td>{{item.amount}}</td>
+                {% endfor %}
+            </tr>
+            
+            <tr>
+                <td>Техника</td>
+                {% for item in filterTechnique %}
+                <td>{{item.amount}}</td>
+                {% endfor %}
+            </tr>
+            
+            <tr>
+                <td>Одежда</td>
+                {% for item in filterClothing %}
+                <td>{{item.amount}}</td>
+                {% endfor %}
+            </tr>
+            
+        </table>
+        
+
+    </body>
+</html>
