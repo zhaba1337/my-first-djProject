@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 
 <html>
     <head>
-
+        <link rel="stylesheet" href="{% static 'css/viewExpense.css' %}">
         <meta charset="UTF-8">
         <title>ТРАТЫ</title>
     </head>
@@ -13,28 +14,15 @@
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
             }
         </style>
-        <table border = '1' height ="100%" width = '250px'>
+        <table border = '1' >
             <caption>Таблица трат</caption>    
             <tr>
-                <td>Кафе</td>
-                {% for item in filterCafe %}
-                <td>{{item.amount}}</td>
+                <td>Даты:</td>
+                {% for item in arrayDate %}
+                <td>{{item}}</td>
                 {% endfor %}
             </tr>
             
-            <tr>
-                <td>Техника</td>
-                {% for item in filterTechnique %}
-                <td>{{item.amount}}</td>
-                {% endfor %}
-            </tr>
-            
-            <tr>
-                <td>Одежда</td>
-                {% for item in filterClothing %}
-                <td>{{item.amount}}</td>
-                {% endfor %}
-            </tr>
             
         </table>
         

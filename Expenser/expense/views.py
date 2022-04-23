@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from .models import Expense 
 from django.utils import timezone
 from django.template import loader
+from itertools import groupby
 # Create your views here.
 
 def index(request):
@@ -43,6 +44,10 @@ def viewExpenseWithTemplate(request):
     return render(request, 'expense/expenseShow.html', 
         {'bbs' : bbs,'filterCafe' : filterCafe, "filterTechnique" : filterTechnique, 'filterClothing' : filterClothing})
 
-def post_list(request):
-    posts = Expense.objects.filter(title = 'title')
-    return render(request, 'expense/post_list.html', {'posts': posts})
+def viewExpenseWithTemplate(request):
+    bbs = Expense.objects.all()
+    arrayDate = []
+    for obj in Expense.objects.all():
+        if obj.time_create.date not in arrayDate:
+            arrayDate.append(obj.time_create.date)
+    return render(request, 'expense/expenseShow.html', {'bbs' : bbs, 'arrayDate' : arrayDate})
