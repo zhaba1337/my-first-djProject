@@ -1,3 +1,11 @@
 body{
-    color:rgb(0, 0, 0);
+    color:rgb(255, 0, 0);
+}
+
+table{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1{
+    color:aquamarine;
 }

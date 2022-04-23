@@ -36,7 +36,7 @@ def viewExpense(request):
 
 
 
-def viewExpenseWithTemplate(request):
+def viewExpenseWithTemplate1(request):
     bbs = Expense.objects.all()
     filterCafe = Expense.objects.filter(title = 'кафе')
     filterClothing = Expense.objects.filter(title = 'одежда')

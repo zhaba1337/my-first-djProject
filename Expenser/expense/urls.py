@@ -9,5 +9,5 @@ urlpatterns = [
     path('plot/yes', yes),
     path('plot/no', no),
     path('viewExpense', viewExpense),
-    path('ViewExpenseTemp', viewExpenseWithTemplate)
+    path('ViewExpenseTemp', viewExpenseWithTemplate),
 ]
