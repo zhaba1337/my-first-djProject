@@ -51,6 +51,7 @@ nav .add{
 }
 
 .grid-item{
+
     width: calc((100% - 24px * 2) / 4);
     margin-right: 30px;
     margin-top: 20px;
