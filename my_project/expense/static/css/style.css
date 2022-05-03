@@ -44,6 +44,7 @@ nav .add{
     width: 20%;
     float:left;
 
+
 }
 
 .four-col-grid::after{
@@ -53,7 +54,7 @@ nav .add{
 }
 
 .grid-item{
-
+    min-width: 200px;
     width: calc((100% - 24px * 2) / 4);
     margin-right: 30px;
     margin-top: 20px;
