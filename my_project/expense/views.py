@@ -16,7 +16,7 @@ def index(request):
     bbs = Expense.objects.all()[::-1]
     rubrics = Rubric.objects.all()
     context = {'bbs' : bbs, 'rubrics' : rubrics}
-    return render(request, 'my_project/expense/templates/expense/index.html', context)
+    return render(request, 'expense/index.html', context)
 
 
 def by_rubric(request, rubric_id):
@@ -25,7 +25,7 @@ def by_rubric(request, rubric_id):
     current_rubric = Rubric.objects.get(pk = rubric_id)
     context = {'bbs' : bbs, 'rubrics' : rubrics, "current_rubric" : current_rubric}
 
-    return render(request, 'my_project/expense/templates/expense/rubric.html', context)
+    return render(request, 'expense/rubric.html', context)
 
     
 class ExpenseCreateView(CreateView):#наследовали класс CreateView
