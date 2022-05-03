@@ -1,0 +1,16 @@
+{% extends "layout/basic.html" %}
+
+{% block content %}
+<div class="l-wrap">
+    <div class="four-col-grid">
+        {% for bb in bbs %}
+        <div class = 'grid-item'>
+            <h2>{{bb.title}}</h2>
+            <p>{{bb.amount}}</p>
+            <p><a href="{% url 'by_rubric' bb.rubric.pk %}">{{bb.rubric.name}}</a></p>
+            <p>{{bb.time_create}}</p>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

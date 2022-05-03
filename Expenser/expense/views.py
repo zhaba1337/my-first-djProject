@@ -1,53 +1,40 @@
 from email import charset
 from multiprocessing import context
+from re import template
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Expense 
 from django.utils import timezone
 from django.template import loader
-from itertools import groupby
+from .models import Rubric
+from django.views.generic.edit import CreateView
+from .forms import ExpenseForm
+from django.urls import reverse_lazy
 # Create your views here.
 
 def index(request):
-    return HttpResponse('Страница ы')
+    bbs = Expense.objects.all()[::-1]
+    rubrics = Rubric.objects.all()
+    context = {'bbs' : bbs, 'rubrics' : rubrics}
+    return render(request, 'expense/index.html', context)
 
 
-def expenses(request):
-    return HttpResponse('<h1>Страница расходов</h1>')
+def by_rubric(request, rubric_id):
+    bbs = Expense.objects.filter(rubric = rubric_id)
+    rubrics = Rubric.objects.all()
+    current_rubric = Rubric.objects.get(pk = rubric_id)
+    context = {'bbs' : bbs, 'rubrics' : rubrics, "current_rubric" : current_rubric}
 
-def post_list(request):
-    posts = Expense.objects.filter(title = 'title')
-    return render(request, 'expense/post_list.html', {'posts': posts})
+    return render(request, 'expense/rubric.html', context)
 
-def yes(request):
-    return HttpResponse('<h1>правильно! Пидорас</h1>')
+    
+class ExpenseCreateView(CreateView):#наследовали класс CreateView
+    template_name = 'expense/create.html'#путь к файлу с шаблоном 
+    form_class = ExpenseForm#ссылка на класс-формы
+    success_url = reverse_lazy('index')#адрес для перенаправления после сохранения
 
-def no(request):
-    return HttpResponse('<h1>Ошибаешься, ты пидорас.</h1>')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['rubrics'] = Rubric.objects.all()
+        return context
 
-
-def viewExpense(request):
-    s = 'список трат:'
-    for item in Expense.objects.all():
-        s += f'<h4>{item.amount} были потрачены на <i>{item.title}</i>.</h4>'
-    return HttpResponse(s) 
-    # content_type = 'text/plain; charset=utf-8' используется для указания кодировки utf8 для того что бы работала \n для переноса строки
-    # в таком случае не будут работаь html теги
-
-
-
-def viewExpenseWithTemplate1(request):
-    bbs = Expense.objects.all()
-    filterCafe = Expense.objects.filter(title = 'кафе')
-    filterClothing = Expense.objects.filter(title = 'одежда')
-    filterTechnique = Expense.objects.filter(title = 'техника')
-    return render(request, 'expense/expenseShow.html', 
-        {'bbs' : bbs,'filterCafe' : filterCafe, "filterTechnique" : filterTechnique, 'filterClothing' : filterClothing})
-
-def viewExpenseWithTemplate(request):
-    bbs = Expense.objects.all()
-    arrayDate = []
-    for obj in Expense.objects.all():
-        if obj.time_create.date not in arrayDate:
-            arrayDate.append(obj.time_create.date)
-    return render(request, 'expense/expenseShow.html', {'bbs' : bbs, 'arrayDate' : arrayDate})
